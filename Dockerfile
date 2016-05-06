@@ -7,11 +7,5 @@ RUN yum -y update && \
     pip install git+https://github.com/idcf/cloudstack-api && \
     yum clean all
 
-ONBUILD RUN echo "[account]" > ~/.idcfrc && \
-            echo "host=${IDCF_END_POINT}" >> ~/.idcfrc && \
-            echo "api_key=${API_KEY}" >> ~/.idcfrc && \
-            echo "secret_key=${SECRET_KEY}" >> ~/.idcfrc && \
-            chmod 600 ~/.idcfrc
-
-ENTRYPOINT ["cloudstack-api"]
+ENTRYPOINT ["docker-entrypoint.sh"]
 
